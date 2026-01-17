@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Biorhythm Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+日々の身体・感情・知性の状態を記録するバイオリズム管理アプリです。
 
-Currently, two official plugins are available:
+## 機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **バイオリズム記録**: 身体・感情・知性を1-10のスケールで記録
+- **アクティビティ記録**: プランク、懸垂、サウナ、ケトル、飲酒、歌などの活動を記録
+- **メモ機能**: 各カテゴリごとにメモを追加可能
+- **履歴表示**: カレンダービュー/リストビューで過去の記録を確認
 
-## React Compiler
+## 技術スタック
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite
+- Supabase (PostgreSQL)
+- SWR (データフェッチ)
 
-## Expanding the ESLint configuration
+## セットアップ
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. 依存関係のインストール
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd biorhythm-app
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Supabaseプロジェクトの作成
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. [Supabase](https://supabase.com/) でアカウントを作成
+2. 新しいプロジェクトを作成
+3. SQL Editorで `supabase-schema.sql` を実行してテーブルを作成
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. 環境変数の設定
+
+`.env.local` ファイルを作成:
+
+```bash
+cp .env.example .env.local
 ```
+
+Supabaseダッシュボードから以下の値を取得して設定:
+- **Project URL**: Settings > API > Project URL
+- **Anon Key**: Settings > API > Project API keys > anon public
+
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+### 4. 開発サーバーの起動
+
+```bash
+npm run dev
+```
+
+http://localhost:5173 でアプリが起動します。
+
+## ビルド
+
+```bash
+npm run build
+```
+
+## ライセンス
+
+MIT
