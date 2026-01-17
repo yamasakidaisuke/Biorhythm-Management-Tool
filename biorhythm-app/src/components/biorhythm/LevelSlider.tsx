@@ -1,5 +1,7 @@
 import { memo, useCallback } from 'react';
 
+const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+
 interface LevelSliderProps {
   label: string;
   value: number | null;
@@ -39,7 +41,7 @@ export const LevelSlider = memo(function LevelSlider({
         )}
       </div>
       <div className="level-segments">
-        {Array.from({ length: 10 }, (_, i) => i + 1).map((level) => (
+        {LEVELS.map((level) => (
           <button
             key={level}
             type="button"

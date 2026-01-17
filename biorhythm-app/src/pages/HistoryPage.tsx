@@ -35,6 +35,7 @@ export function HistoryPage({ onDateSelect }: HistoryPageProps) {
             type="button"
             className={viewMode === 'calendar' ? 'active' : ''}
             onClick={() => handleViewModeChange('calendar')}
+            aria-pressed={viewMode === 'calendar'}
           >
             カレンダー
           </button>
@@ -42,6 +43,7 @@ export function HistoryPage({ onDateSelect }: HistoryPageProps) {
             type="button"
             className={viewMode === 'list' ? 'active' : ''}
             onClick={() => handleViewModeChange('list')}
+            aria-pressed={viewMode === 'list'}
           >
             リスト
           </button>

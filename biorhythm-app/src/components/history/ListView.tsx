@@ -55,7 +55,7 @@ export const ListView = memo(function ListView({
               </div>
             )}
             {entry.event_memo && (
-              <div className="list-item-memo">{entry.event_memo.slice(0, 50)}...</div>
+              <div className="list-item-memo">{entry.event_memo.slice(0, 50)}…</div>
             )}
           </button>
         );
