@@ -7,6 +7,10 @@
 
 A self-care app to track your daily physical, emotional, and intellectual states.
 
+## デモ / Demo
+
+![Anger Log Demo](docs/anger-log-demo.gif)
+
 ## 機能 / Features
 
 - **バイオリズム記録**: 身体・感情・知性を1-10のスケールで記録
